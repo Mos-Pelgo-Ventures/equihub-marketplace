@@ -14,7 +14,7 @@ Claude sees only what your Equihub role allows. If your role has no access to he
 
 ## Commands
 
-Type `/` in a conversation to see the commands.
+Type `/` in a conversation to see the commands. You don't always need them: ask what is due today, what is overdue, or about a specific horse, and Claude uses `/today`, `/overdue` or `/horse` by itself. `/setup` and `/done` change your data, so they only run when you type them.
 
 ### `/setup`
 New to Equihub? Start here. Claude sets up your stable with you, step by step: your yard and its buildings, fields and stalls, then your horses — from an Excel or CSV file, a typed list or photos of their passports. It closes by asking what you want under control first, and starts on it with you.

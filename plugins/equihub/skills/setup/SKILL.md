@@ -1,9 +1,11 @@
 ---
-description: Set up your stable in Equihub — your location, your horses, and what to organise first
+name: setup
+description: "Set up a stable in Equihub step by step: its location, its horses from a file, list or passport photos, and what to organise first."
+disable-model-invocation: true
 allowed-tools: mcp__plugin_equihub_equihub__searchLocation, mcp__plugin_equihub_equihub__getRecord, mcp__plugin_equihub_equihub__createLocation, mcp__plugin_equihub_equihub__updateSubLocation, mcp__plugin_equihub_equihub__updateLocationBox, mcp__plugin_equihub_equihub__searchHorse, mcp__plugin_equihub_equihub__createHorses, mcp__plugin_equihub_equihub__createHorseLocation
 ---
 
-Guide this stable through setting up Equihub. Today is !`date +%Y-%m-%d`. $ARGUMENTS
+Guide this stable through setting up Equihub. Use today's date. $ARGUMENTS
 
 Work through the four steps below in order, one at a time. Ask one question, wait for the answer, then continue. Keep messages short and direct: the person is busy and runs a professional operation. Never write anything to Equihub without showing it first and getting a yes.
 

@@ -43,7 +43,7 @@ esac
 STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT
 
-cp -R "$ROOT/.claude-plugin" "$ROOT/commands" "$ROOT/README.md" "$STAGE/"
+cp -R "$ROOT/.claude-plugin" "$ROOT/skills" "$ROOT/README.md" "$STAGE/"
 
 # MCP server, URL baked in.
 # local defaults to mcp-remote: localhost is only reachable from this machine.

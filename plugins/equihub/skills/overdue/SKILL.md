@@ -1,9 +1,10 @@
 ---
-description: List everything overdue in Equihub — health care and open tasks
+name: overdue
+description: "List everything overdue in Equihub: late health care and tasks still open. Use when the user asks what is overdue, late, behind or still open at the stable."
 allowed-tools: mcp__plugin_equihub_equihub__getHealthOverview, mcp__plugin_equihub_equihub__searchPlannedTask, mcp__plugin_equihub_equihub__searchPlannedGeneralTask
 ---
 
-List everything that is overdue in Equihub. Today is !`date +%Y-%m-%d` (!`date +%A`). Overdue tasks are looked up over the last 30 days, from !`date -d '30 days ago' +%Y-%m-%d 2>/dev/null || date -v-30d +%Y-%m-%d` to yesterday, !`date -d yesterday +%Y-%m-%d 2>/dev/null || date -v-1d +%Y-%m-%d`.
+List everything that is overdue in Equihub. Use today's date and weekday. Look up overdue tasks over the last 30 days: from 30 days before today to yesterday.
 
 Call these Equihub MCP tools in parallel:
 

@@ -1,12 +1,13 @@
 ---
-description: One-page profile of a horse — location, owners, health, care dates, feeding, insurance and notes
+name: horse
+description: "One-page profile of one horse in Equihub: location, owners, health and care dates, feeding, insurance and notes. Use when the user asks about a specific horse, for an overview of a horse, or 'tell me about <horse>'."
 argument-hint: <horse name, nickname, UELN or microchip>
 allowed-tools: mcp__plugin_equihub_equihub__searchHorse, mcp__plugin_equihub_equihub__getHorseByUuid, mcp__plugin_equihub_equihub__getHealthOverview, mcp__plugin_equihub_equihub__searchHealthRecord, mcp__plugin_equihub_equihub__searchNutrition, mcp__plugin_equihub_equihub__searchHorseNote
 ---
 
-Give me a one-page profile of this horse in Equihub: **$ARGUMENTS**. Today is !`date +%Y-%m-%d`.
+Give a one-page profile of one horse in Equihub: the horse in **$ARGUMENTS**, or the one the user asked about. Use today's date.
 
-If no horse was given, ask which horse and stop.
+If no horse is named, ask which horse and stop.
 
 **1. Find the horse.** Call `searchHorse` with `quickSearch` = the text above (it matches registered name, nickname, UELN and microchip). If there is no match, say so and stop. If there are several, list them (display name, registered name, birth year, gender, archived) and ask which one; do not guess.
 

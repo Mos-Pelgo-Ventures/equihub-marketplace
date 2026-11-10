@@ -1,10 +1,12 @@
 ---
-description: Mark planned tasks as done in Equihub
+name: done
+description: "Mark planned tasks as done (or reopen them) in Equihub, after showing the changes and getting confirmation."
+disable-model-invocation: true
 argument-hint: <task, and optionally horses, e.g. "feeding Bella and Max" or "all lunging">
 allowed-tools: mcp__plugin_equihub_equihub__searchPlannedTask, mcp__plugin_equihub_equihub__searchPlannedGeneralTask, mcp__plugin_equihub_equihub__getRecord, mcp__plugin_equihub_equihub__updatePlannedTaskStatus, mcp__plugin_equihub_equihub__updatePlannedGeneralTask
 ---
 
-Mark tasks as done in Equihub: **$ARGUMENTS**. Today is !`date +%Y-%m-%d`.
+Mark tasks as done in Equihub: **$ARGUMENTS**. Use today's date.
 
 If nothing was given, list today's open tasks (step 1) and ask which ones are done.
 

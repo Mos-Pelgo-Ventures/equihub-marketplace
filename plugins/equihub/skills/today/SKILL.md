@@ -1,9 +1,10 @@
 ---
-description: Show what is planned in Equihub today — calendar, tasks and health
+name: today
+description: "Show what is planned in Equihub today: calendar, horse and general tasks, and health reminders. Use when the user asks what is planned, scheduled or due today at the stable, or for a daily overview."
 allowed-tools: mcp__plugin_equihub_equihub__searchCalendar, mcp__plugin_equihub_equihub__searchPlannedTask, mcp__plugin_equihub_equihub__searchPlannedGeneralTask, mcp__plugin_equihub_equihub__getHealthOverview
 ---
 
-Give me an overview of everything planned in Equihub for today. Today is !`date +%Y-%m-%d` (!`date +%A`).
+Give me an overview of everything planned in Equihub for today. Use today's date and weekday.
 
 Call these Equihub MCP tools in parallel, all scoped to today's date:
 
