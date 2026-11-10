@@ -25,7 +25,7 @@ All variants are named `equihub`, so install one at a time in Claude Desktop / C
 
 ```
 /plugin marketplace add Mos-Pelgo-Ventures/equihub-marketplace
-/plugin install Equihub@Equihub
+/plugin install equihub@equihub-marketplace
 ```
 
 Or load it without installing: `claude --plugin-dir .`. Run `/mcp` to check that `equihub` is connected.

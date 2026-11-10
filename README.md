@@ -10,7 +10,7 @@ Equihub's plugins for Claude.
 
 ```
 /plugin marketplace add Mos-Pelgo-Ventures/equihub-marketplace
-/plugin install Equihub@Equihub
+/plugin install equihub@equihub-marketplace
 ```
 
 

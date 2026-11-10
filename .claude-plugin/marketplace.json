@@ -1,5 +1,5 @@
 {
-  "name": "Equihub",
+  "name": "equihub-marketplace",
   "description": "Equihub plugins for Claude: your stable records, daily tasks and health planning in Claude.",
   "owner": {
     "name": "Equihub",
@@ -7,7 +7,7 @@
   },
   "plugins": [
     {
-      "name": "Equihub",
+      "name": "equihub",
       "source": "./plugins/equihub",
       "description": "Your stable's records in Claude. Check what is due, look up any horse and tick off the day's tasks."
     }
