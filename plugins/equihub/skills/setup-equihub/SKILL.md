@@ -1,5 +1,5 @@
 ---
-name: setup
+name: setup-equihub
 description: "Set up a stable in Equihub step by step: its location, its horses from a file, list or passport photos, and what to organise first."
 disable-model-invocation: true
 allowed-tools: mcp__plugin_equihub_equihub__searchLocation, mcp__plugin_equihub_equihub__getRecord, mcp__plugin_equihub_equihub__createLocation, mcp__plugin_equihub_equihub__updateSubLocation, mcp__plugin_equihub_equihub__updateLocationBox, mcp__plugin_equihub_equihub__searchHorse, mcp__plugin_equihub_equihub__createHorses, mcp__plugin_equihub_equihub__createHorseLocation, mcp__plugin_equihub_equihub__getCurrentUser, mcp__plugin_equihub_equihub__inviteTeamMembers
