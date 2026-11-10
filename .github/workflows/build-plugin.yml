@@ -1,0 +1,44 @@
+name: Build plugin bundles
+
+# Builds the .plugin bundles for Claude Desktop / Cowork when a release tag is
+# pushed, and publishes them on a GitHub release for that tag:
+#   git tag release_0.3.0 && git push origin release_0.3.0
+#   https://github.com/<owner>/<repo>/releases/download/release_0.3.0/equihub-dev.plugin
+# Set the repository variable EQUIHUB_PROD_MCP_URL to also build equihub.plugin.
+
+on:
+  push:
+    tags:
+      - "release_**"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build bundles
+        env:
+          EQUIHUB_PROD_MCP_URL: ${{ vars.EQUIHUB_PROD_MCP_URL }}
+        run: |
+          plugins/equihub/build.sh dev
+          if [ -n "$EQUIHUB_PROD_MCP_URL" ]; then
+            plugins/equihub/build.sh prod
+          fi
+          ls -l plugins/equihub/dist
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          VERSION=$(jq -r .version plugins/equihub/.claude-plugin/plugin.json)
+          gh release create "$TAG" plugins/equihub/dist/*.plugin \
+            --verify-tag \
+            --title "Equihub plugin $VERSION ($TAG)" \
+            --notes "Built from ${GITHUB_SHA::7}.
+
+          Install \`equihub-dev.plugin\` in Claude Desktop: remove the installed Equihub plugin first, then add this file."

@@ -35,3 +35,16 @@ Or load it without installing: `claude --plugin-dir plugins/equihub` (uses the d
 - The MCP public URL (`equihub.mcp.public-url` in the backend) must equal the URL clients connect to, without `:444`: the `resource` check is an exact match.
 - Claude's custom connectors connect from Anthropic's cloud: the MCP endpoint must be publicly reachable on the standard HTTPS port (443).
 - `updatePlannedGeneralTask` updates the whole series, so `/done` skips repeating general tasks. Adding an occurrence scope to the tool would lift that.
+
+## Release builds
+
+Pushing a tag that starts with `release_` runs `.github/workflows/build-plugin.yml`. It builds `equihub-dev.plugin` and attaches it to a GitHub release for that tag:
+
+```
+git tag release_0.3.0
+git push origin release_0.3.0
+```
+
+The bundle is then at `https://github.com/Mos-Pelgo-Ventures/equihub-marketplace/releases/download/release_0.3.0/equihub-dev.plugin`, and the newest one at `.../releases/latest/download/equihub-dev.plugin`.
+
+Bump `version` in `plugin.json` before tagging. Set the repository variable `EQUIHUB_PROD_MCP_URL` to also build `equihub.plugin`.
