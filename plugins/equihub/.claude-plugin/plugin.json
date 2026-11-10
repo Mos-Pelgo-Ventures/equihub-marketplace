@@ -1,0 +1,9 @@
+{
+  "name": "Equihub",
+  "version": "0.3.0",
+  "description": "Your stable's records in Claude. Check what is due, look up any horse and tick off the day's tasks.",
+  "author": {
+    "name": "Equihub",
+    "email": "support@equihub.io"
+  }
+}
