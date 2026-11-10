@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "equihub": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "http://localhost:8080/mcp"]
+      "type": "http",
+      "url": "https://dev-3200.equihub.io/mcp"
     }
   }
 }
