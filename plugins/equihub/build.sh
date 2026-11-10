@@ -6,10 +6,10 @@
 #   ./build.sh prod   -> dist/equihub.plugin       (needs EQUIHUB_PROD_MCP_URL)
 #
 # Transport (EQUIHUB_TRANSPORT):
-#   mcp-remote (default) - stdio bridge; Claude Desktop shows "Connect" and the
-#                          bridge opens the browser to log in. Proven in Cowork.
-#   http                 - direct Streamable HTTP; login is handled by the app and
-#                          needs the server to answer 401 + WWW-Authenticate.
+#   http (default) - direct Streamable HTTP; Claude runs the sign-in itself
+#                    (the server answers 401 + WWW-Authenticate). No Node.js needed.
+#   mcp-remote     - stdio bridge through npx; the bridge opens the browser to
+#                    sign in. Needs Node.js. Use it for a server Claude cannot reach.
 #
 # Every variant keeps the plugin name "equihub" so tool names
 # (mcp__plugin_equihub_equihub__*) stay the same: install one variant at a time.
@@ -46,7 +46,9 @@ trap 'rm -rf "$STAGE"' EXIT
 cp -R "$ROOT/.claude-plugin" "$ROOT/commands" "$ROOT/README.md" "$STAGE/"
 
 # MCP server, URL baked in.
-TRANSPORT="${EQUIHUB_TRANSPORT:-mcp-remote}"
+# local defaults to mcp-remote: localhost is only reachable from this machine.
+if [ "$ENV" = local ]; then DEFAULT_TRANSPORT=mcp-remote; else DEFAULT_TRANSPORT=http; fi
+TRANSPORT="${EQUIHUB_TRANSPORT:-$DEFAULT_TRANSPORT}"
 case "$TRANSPORT" in
   mcp-remote)
     jq -n --arg url "$URL" \

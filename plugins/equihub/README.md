@@ -66,7 +66,6 @@ When a request changes your data — a new note, a reminder, an appointment — 
 | What you see | What to do |
 |---|---|
 | Equihub shows **Connect** again | Your sign-in has expired. Select **Connect** and sign in again. |
-| The browser does not open when you select Connect | Connecting requires Node.js on your computer. Install it from nodejs.org and restart Claude. |
 | "Missing permission" for health, breeding or feeding | Your Equihub role does not include that area. Ask your stable manager to update your role. |
 | A horse is not found | Check the spelling, or search by UELN or microchip. Archived horses are included. |
 | Something else | Contact Equihub support and mention the command or question you used. |

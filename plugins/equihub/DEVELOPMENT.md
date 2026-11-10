@@ -16,8 +16,8 @@ Not shipped in the plugin bundle; `README.md` is the user guide shown in Claude 
 EQUIHUB_PROD_MCP_URL=https://<domain>/mcp ./build.sh prod   # dist/equihub.plugin
 ```
 
-Bundles connect through `mcp-remote` by default: Claude Desktop shows **Connect**, and the bridge opens the browser to sign in (needs Node.js).
-`EQUIHUB_TRANSPORT=http ./build.sh <env>` connects directly instead; the server must answer 401 with `WWW-Authenticate` so the app runs the sign-in.
+Bundles connect directly over HTTP by default, like the marketplace install: Claude runs the sign-in itself, so no Node.js is needed. The server must answer 401 with `WWW-Authenticate`.
+`EQUIHUB_TRANSPORT=mcp-remote ./build.sh <env>` uses the `mcp-remote` bridge instead (needs Node.js), for example for a local backend that Claude's cloud cannot reach.
 
 All variants are named `equihub`, so install one at a time in Claude Desktop / Cowork.
 
