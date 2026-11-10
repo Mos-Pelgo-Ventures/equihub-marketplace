@@ -2,7 +2,7 @@
 name: setup
 description: "Set up a stable in Equihub step by step: its location, its horses from a file, list or passport photos, and what to organise first."
 disable-model-invocation: true
-allowed-tools: mcp__plugin_equihub_equihub__searchLocation, mcp__plugin_equihub_equihub__getRecord, mcp__plugin_equihub_equihub__createLocation, mcp__plugin_equihub_equihub__updateSubLocation, mcp__plugin_equihub_equihub__updateLocationBox, mcp__plugin_equihub_equihub__searchHorse, mcp__plugin_equihub_equihub__createHorses, mcp__plugin_equihub_equihub__createHorseLocation
+allowed-tools: mcp__plugin_equihub_equihub__searchLocation, mcp__plugin_equihub_equihub__getRecord, mcp__plugin_equihub_equihub__createLocation, mcp__plugin_equihub_equihub__updateSubLocation, mcp__plugin_equihub_equihub__updateLocationBox, mcp__plugin_equihub_equihub__searchHorse, mcp__plugin_equihub_equihub__createHorses, mcp__plugin_equihub_equihub__createHorseLocation, mcp__plugin_equihub_equihub__getCurrentUser, mcp__plugin_equihub_equihub__inviteTeamMembers
 ---
 
 Guide this stable through setting up Equihub. Use today's date. $ARGUMENTS
@@ -12,10 +12,15 @@ Work through the four steps below in order, one at a time. Ask one question, wai
 ## 0. Check what is already there
 
 Before the first question, call in parallel:
+- `getCurrentUser`: who is signed in — `firstName`, `accountName` (the stable's name), `role`, `canInviteTeamMembers`, `permissions`, `language`, trial status.
 - `searchLocation` (no filters): existing locations, with their sub-locations and boxes.
 - `searchHorse` with `archived` = false and `countOnly` = true: how many active horses exist.
 
+Open by addressing them by `firstName` and naming their stable (`accountName`) in one short line. Write in their `language` if it is not English.
+
 If locations or horses already exist, say so in one line ("You already have 1 location and 12 horses in Equihub") and skip or shorten the steps that are done. Offer to add to them rather than start again.
+
+If `permissions` leaves out an area a step needs (for example horses or locations), say so before that step and skip it: Equihub refuses those calls. Only an account owner (`role` = `ACCOUNT_OWNER`) can invite the team.
 
 ## 1. Barn, stable or yard?
 
@@ -31,7 +36,7 @@ How Equihub stores it, whichever word they use:
 ## 2. Add the first location
 
 Ask for:
-- the name of the place (2–60 characters) and its address and country;
+- the name of the place (2–60 characters) and its address and country. Suggest `accountName` as the name; they can change it;
 - the buildings and fields on it, by name ("Main barn", "Back paddock");
 - for each building, how many stalls, or their names or numbers. A count is enough: number them 1, 2, 3… unless they give names.
 
@@ -74,12 +79,26 @@ Ask: **"What do you want under control first?"** and offer these, in their words
 - **Daily tasks** — feeding, turnout, exercise, and who does what each day.
 - **Feeding** — a feeding plan per horse, ready for the feed room.
 - **Owners and contacts** — owners and their shares, vet, farrier, emergency contacts.
-- **Team** — inviting staff, which is done in the Equihub app under team settings.
+- **Team** — invite the people who work with you, so everyone sees the same planning. Offer this only when `canInviteTeamMembers` is true; otherwise say the account owner can invite the team.
 
 Based on the answer, explain in two or three lines what to set up, and offer to start on it right away in this conversation. For example: "Tell me when each horse was last vaccinated and I'll set the reminders."
 
+### Inviting the team
+
+When they choose the team, and `canInviteTeamMembers` is true:
+
+1. Ask for each person's first name, last name and email address. A pasted list or a photo of a staff list is fine.
+2. Show the list as a table (first name, last name, email). Point out any email that looks wrong; do not correct it yourself.
+3. Say plainly that each person **gets an invite email straight away** and joins as a team member, and ask for confirmation.
+4. After a yes, call `inviteTeamMembers` with `teamMembers` = [{`email`, `firstName`, `lastName`}], at most 20 per call.
+5. Report who was invited. People in `skippedEmails` already have an Equihub user: list them and say they were not invited again.
+
+Team members get the default access. Roles and access are changed in the Equihub app.
+
 ## Finish
 
-Close with a short summary: what is now in Equihub (location, buildings, boxes, horses), what is still open, and the commands that help day to day: `/today`, `/overdue`, `/horse <name>`, `/done`.
+Close with a short summary: what is now in Equihub (location, buildings, boxes, horses, invited team members), what is still open, and the commands that help day to day: `/today`, `/overdue`, `/horse <name>`, `/done`.
+
+If `onTrial` is true, end with one line on when the trial ends (`trialEndsOn`), without a sales pitch.
 
 If any call fails with a permission error, explain that their Equihub role cannot create that kind of record and that an account owner or administrator needs to do it, then continue with the steps that work.
