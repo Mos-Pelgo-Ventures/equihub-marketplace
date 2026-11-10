@@ -1,7 +1,7 @@
 ---
 name: horse
-description: "One-page profile of one horse in Equihub: location, owners, health and care dates, feeding, insurance and notes. Use when the user asks about a specific horse, for an overview of a horse, or 'tell me about <horse>'."
-argument-hint: <horse name, nickname, UELN or microchip>
+description: "One-page profile of one horse in Equihub: location, owners, health and care dates, feeding, insurance and notes. Use when the user asks about a specific horse, for an overview of a horse, or 'tell me about Bella'."
+argument-hint: "[horse name, nickname, UELN or microchip]"
 allowed-tools: mcp__plugin_equihub_equihub__searchHorse, mcp__plugin_equihub_equihub__getHorseByUuid, mcp__plugin_equihub_equihub__getHealthOverview, mcp__plugin_equihub_equihub__searchHealthRecord, mcp__plugin_equihub_equihub__searchNutrition, mcp__plugin_equihub_equihub__searchHorseNote
 ---
 
